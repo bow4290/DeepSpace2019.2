@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,10 +24,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
   public static OI oi;
+  public static DriveTrain driveTrain;
   
   @Override
   public void robotInit() {
+    RobotMap.init();
     oi = new OI();
+    driveTrain = new DriveTrain();
 
   }
 
@@ -42,7 +46,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() { 
     Scheduler.getInstance().run();
-    RobotMap.driveTrainBase.tankDrive(oi.leftJoystick.getY(), oi.rightJoystick.getY());   
+    //RobotMap.driveTrainBase.tankDrive(oi.leftJoystick.getY(), oi.rightJoystick.getY());   
   }
 
   @Override
