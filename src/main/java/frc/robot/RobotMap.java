@@ -8,6 +8,8 @@
 package frc.robot;
 
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -22,6 +24,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class RobotMap {
   
   public static DifferentialDrive driveTrainBase;
+  private static DoubleSolenoid gearShiftSolenoid;
 
   private static SpeedController driveTrainMotorRightFront; 
   private static SpeedController driveTrainMotorRightBack;
@@ -30,6 +33,13 @@ public class RobotMap {
   private static SpeedController driveTrainMotorLeftFront;
   private static SpeedController driveTrainMotorLeftBack;
   private static SpeedControllerGroup driveTrainLeft;
+
+  private static SpeedController elevator;
+  private static SpeedController elbow;
+  private static SpeedController wrist;
+  private static SpeedController finger;
+  
+  private static ADXRS450_Gyro turningGyro;
 
   public static void init(){
     driveTrainMotorRightFront = new Spark(0);
@@ -40,7 +50,14 @@ public class RobotMap {
     driveTrainMotorLeftBack = new Spark(3);
     driveTrainLeft = new SpeedControllerGroup(driveTrainMotorLeftFront, driveTrainMotorLeftBack);
 
+    gearShiftSolenoid = new DoubleSolenoid(0, 1);
     driveTrainBase = new DifferentialDrive(driveTrainLeft, driveTrainRight);
 
+    elevator = new Spark(4);
+    elbow = new Spark(5);
+    wrist = new Spark(6);
+    finger = new Spark(7);
+
+    turningGyro = new ADXRS450_Gyro();
   }
 }
